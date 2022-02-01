@@ -9,3 +9,7 @@ async function main() {
   await mongoose.connect('mongodb://localhost:27017/test');
   console.log("servidor mongo montado")
 }
+
+
+
+//crear users y hacer los get, put y demas esta tarde.
