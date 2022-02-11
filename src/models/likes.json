@@ -1,0 +1,30 @@
+[
+    {
+        "like_from": "String",
+        "like_to": "String",
+        "like_type": "String",
+      
+        "like_active": true
+    },
+    {
+        "like_from": "String1",
+        "like_to": "String",
+        "like_type": "String",
+      
+        "like_active": true
+    },
+    {
+        "like_from": "String2",
+        "like_to": "String",
+        "like_type": "String",
+      
+        "like_active": true
+    },
+    {
+        "like_from": "String3",
+        "like_to": "String",
+        "like_type": "String",
+      
+        "like_active": true
+    }
+]

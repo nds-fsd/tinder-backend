@@ -1,25 +1,18 @@
-
-const express = require('express')
-const mongo = require('./src/mongo/mongo');
-const app = express()
-const port = 5001
-
+const express = require('express');
+const app = express();
 
 require("dotenv").config();
 const cors = require('cors');
+const AppRouter = require('./src/controllers');
 app.use(cors())
-const bodyParser = require("body-parser");
 
-
-
-
-
-const {AppRouter} = require("./src/router");
-
+const mongo = require('./src/mongo');
+const port = 5001;
 app.listen(port, () => {
   console.log(`servidor iniciado en http://localhost:${port}`)
 })
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}))
-app.use("/", AppRouter);
+
+app.use(express.json());
+app.use('/api', AppRouter);
+
 
