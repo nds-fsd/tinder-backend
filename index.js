@@ -1,13 +1,38 @@
-
+require('dotenv').config()
 const express = require('express')
-const mongo = require('./mongo/mongo');
 const app = express()
-const port = 5001
+const port = 5002
+const mongoose = require('./src/bbdd/mongo')
+const bodyPaser = require('body-parser');
+const appRouter = require('./src/controllers')
+
 
 app.get('/', (req, res) => {
-  res.send('Hellffewo World!')
+  res.send('Hello World!')
 })
 
+
+
+
+
+
+const cors = require('cors')
+app.use(cors())
+
+app.use(bodyPaser.json())
+app.use(bodyPaser.urlencoded({ extended : true }))
+
 app.listen(port, () => {
-  console.log(`servidor iniciado en http://localhost:${port}`)
+  console.log(`App corriendo en http://localhost:${port}`)
 })
+
+app.use(express.json());
+app.use('/api', appRouter);
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS,PATCH");
+    next();
+  });
+
+
