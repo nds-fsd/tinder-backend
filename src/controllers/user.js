@@ -27,6 +27,8 @@ userRouter.post('/register', async (req, res) => {
     } else { resultUser ="false";}
 
 
+
+
  
 
   user.save((error, success) => {
@@ -46,17 +48,17 @@ userRouter.post('/register', async (req, res) => {
 
 userRouter.patch('/modify/:id', (req, res) => {
     const body = req.body;
-    const {age, rangeAgefrom} = req.body;
-
     const id = req.params.id;
-
+    console.log(body)
     User.findByIdAndUpdate(id, body, {new: true}, ( error, success ) => {
        if(error) {
            res.status(500).json({error: error.message});
        } else if (!success) {
            res.status(404);
        } else {
+           console.log(body)
            res.status(204).send();
+           
        }
     })
 })
@@ -74,6 +76,24 @@ userRouter.get('/:id', async (req, res) => {
         }
     })
 })
+
+userRouter.get('/match/:genero/:city', async (req, res) => {
+    
+    User.find({gener: req.params.genero, city: req.params.city }, (error, success) => {
+        if(error) {
+            res.status(500).json({error: error.message});
+        } else if (!success) {
+            res.status(404).send()
+        } else {
+            res.json(success);
+        }
+    })
+
+
+    
+})
+
+
 
 
 exports.userRouter = userRouter;
