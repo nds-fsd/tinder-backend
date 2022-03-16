@@ -15,7 +15,7 @@ loginRouter.post('/', async (req, res) => {
     if(!user) return res.status(400).send("Email does not exists");
     if(checkPassword != true) return res.status(400).send("Password does not match");
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {expiresIn: '10h' });
+    const token = jwt.sign({ id: user._id, email: user.email, firstName: user.firstName }, process.env.JWT_SECRET, {expiresIn: '10h' });
     res.status(200).json({ token: token });
 
     

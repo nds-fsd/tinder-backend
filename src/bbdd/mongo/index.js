@@ -1,11 +1,9 @@
 const mongoose = require('mongoose');
 
-
-
-main().catch(err =>console.log(err));
+main().catch(err => console.log(err));
 
 async function main() {
-    await mongoose.connect(process.env.DB_CONNECT);
+    await mongoose.connect(process.env.MONGO_URL);
     console.log('mongo corriendo')
 
 
